@@ -29,7 +29,7 @@ echo $bucket;
 # AWS PHP SDK version 3 create bucket
 $result = $s3->createBucket([
     'ACL' => 'public-read',
-    'Bucket' => $bucket
+    'Bucket' => $bucket,
 ]);
 
 # PHP version 3
@@ -37,7 +37,7 @@ $result = $s3->putObject([
     'ACL' => 'public-read',
     'Bucket' => $bucket,
    'Key' => $fname,
-'SourceFile' => $uploadfile
+'SourceFile' => $uploadfile,
 ]);  
 $url = $result['ObjectURL'];
 echo $url;

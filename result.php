@@ -32,13 +32,13 @@ $result = $s3->createBucket([
 ]);
 
 # PHP version 3
-$result = $client->putObject([
+$result = $s3->putObject([
     'ACL' => 'public-read',
     'Bucket' => $bucket,
    'Key' => $uploadfile
 ]);  
 $url = $result['ObjectURL'];
-#echo $url;
+echo $url;
 $rds = new Aws\Rds\RdsClient([
     'version' => 'latest',
     'region'  => 'us-west-2'

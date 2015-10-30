@@ -20,7 +20,7 @@ Enter Phone of user (1-XXX-XXX-XXXX): <input type="phone" name="phone">
 <br>
 <br>
 
-<input type="submit" value="Send File" />
+<input type="submit" value="Submit Details" />
 </form>
 
 

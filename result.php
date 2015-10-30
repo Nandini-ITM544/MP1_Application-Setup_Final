@@ -22,10 +22,12 @@ $s3 = new Aws\S3\S3Client([
     'version' => 'latest',
     'region'  => 'us-east-1'
 ]);
-$bucket = uniqid("php-jrh-",false);
+print_r($s3);
+$bucket = uniqid("nandinibucket1",false);
 #$result = $client->createBucket(array(
 #    'Bucket' => $bucket
 #));
+echo $bucket;
 # AWS PHP SDK version 3 create bucket
 $result = $s3->createBucket([
     'ACL' => 'public-read',

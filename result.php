@@ -58,15 +58,17 @@ if (mysqli_connect_errno()) {
     exit();
 }
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO Projectrec (id, email,phone,filename,s3rawurl,s3finishedurl,status,issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email,phone,raws3url,finisheds3url,jpegfilename,state,DateTime) VALUES ($uname,$email,$phone,$raws3url,$finisheds3url,$jpegfilename,$state,$DateTime)"))) {
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
+$uname = "MyName";
 $email = $_POST['useremail'];
 $phone = $_POST['phone'];
-$s3rawurl = $url; //  $result['ObjectURL']; from above
-#$fname = basename($_FILES['userfile']['name']);
-$s3finishedurl = "none";
+$raws3url = $url; //  $result['ObjectURL']; from above
+$jpegfname = basename($fname);
+$finisheds3url = "none";
 $state =0;
+$DateTime=date("Y-m-d H:i:s");
 
 $stmt->bind_param("sssssii",$email,$phone,$fname,$s3rawurl,$s3finishedurl,$state);
 if (!$stmt->execute()) {

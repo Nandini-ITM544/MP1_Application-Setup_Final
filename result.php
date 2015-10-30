@@ -58,7 +58,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email,phone,raws3url,finisheds3url,jpegfilename,state,DateTime) VALUES ($uname,$email,$phone,$raws3url,$finisheds3url,$jpegfilename,$state,$DateTime)"))) {
+if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email,phone,raws3url,finisheds3url,jpegfilename,state,DateTime) VALUES (?,?,?,?,?,?,?,?)"))) {
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
 $uname = "MyName";
@@ -70,7 +70,7 @@ $finisheds3url = "none";
 $state =0;
 $DateTime=date("Y-m-d H:i:s");
 
-$stmt->bind_param("sssssii",$email,$phone,$fname,$s3rawurl,$s3finishedurl,$state);
+$stmt->bind_param('$uname','$email','$phone','$raws3url','$finisheds3url','$jpegfilename',$state,'$DateTime');
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }

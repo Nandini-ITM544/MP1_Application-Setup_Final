@@ -64,11 +64,11 @@ if (!($stmt = $link->prepare("INSERT INTO Projectrec (id, email,phone,filename,s
 $email = $_POST['useremail'];
 $phone = $_POST['phone'];
 $s3rawurl = $url; //  $result['ObjectURL']; from above
-$filename = basename($_FILES['userfile']['name']);
+#$fname = basename($_FILES['userfile']['name']);
 $s3finishedurl = "none";
 $state =0;
 
-$stmt->bind_param("sssssii",$email,$phone,$filename,$s3rawurl,$s3finishedurl,$state);
+$stmt->bind_param("sssssii",$email,$phone,$fname,$s3rawurl,$s3finishedurl,$state);
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }

@@ -6,6 +6,7 @@ session_start();
 echo $_POST['useremail'];
 $uploaddir = '/tmp/';
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+$fname = $_FILES['userfile']['name'];
 echo '<pre>';
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
     echo "File is valid, and was successfully uploaded.\n";
@@ -35,7 +36,8 @@ $result = $s3->createBucket([
 $result = $s3->putObject([
     'ACL' => 'public-read',
     'Bucket' => $bucket,
-   'Key' => $uploadfile
+   'Key' => $fname,
+'SourceFile' => $uploadfile
 ]);  
 $url = $result['ObjectURL'];
 echo $url;

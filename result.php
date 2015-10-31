@@ -70,7 +70,7 @@ $finisheds3url = "none";
 $state =0;
 $DateTime=date("Y-m-d H:i:s");
 
-$stmt->bind_param('$uname','$email','$phone','$raws3url','$finisheds3url','$jpegfilename',$state,'$DateTime');
+$stmt->bind_param('sss','$uname','$email','$phone','$raws3url','$finisheds3url','$jpegfilename',$state,'$DateTime');
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;

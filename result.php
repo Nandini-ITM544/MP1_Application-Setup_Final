@@ -23,7 +23,7 @@ $s3 = new Aws\S3\S3Client([
     'region'  => 'us-west-2'
 ]);
 #print_r($s3);
-$bucket = uniqid("nandinibucket1",false);
+$bucket = uniqid("nandinibuckettest",false);
 
 echo $bucket;
 # AWS PHP SDK version 3 create bucket
@@ -58,7 +58,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname,email,phone,raws3url,finisheds3url,jpegfilename,state,DateTime) VALUES (?,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email, phone, raws3url, finisheds3url, jpegfilename, state, DateTime) VALUES (?,?,?,?,?,?,?,?)"))) {
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
 $uname = "MyName";
@@ -67,10 +67,10 @@ $phone = $_POST['phone'];
 $raws3url = $url; 
 $jpegfname = basename($fname);
 $finisheds3url = "none";
-$state =0;
+$state = 0;
 $DateTime=date("Y-m-d H:i:s");
 
-$stmt->bind_param('$uname','$email','$phone','$raws3url','$finisheds3url','$jpegfilename',$state,'$DateTime');
+$stmt->bind_param("sss", '$uname', '$email', '$phone', '$raws3url', '$finisheds3url', '$jpegfilename', $state, '$DateTime');
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;

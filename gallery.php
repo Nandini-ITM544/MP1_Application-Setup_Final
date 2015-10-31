@@ -10,21 +10,18 @@ echo $email;
 require 'vendor/autoload.php';
 
 use Aws\Rds\RdsClient;
-$client = RdsClient::factory(array(
-'region'  => 'us-west-2'
-));
+$client = RdsClient::factory([
+'region'  => 'us-west-2' ,
+'version' => 'latest'
+]);
 
-$result = $client->describeDBInstances(array(
+$result = $client->describeDBInstances([
     'DBInstanceIdentifier' => 'Project1db',
-));
+]);
 
-$endpoint = "";
 
-foreach ($result->getPath('DBInstances/*/Endpoint/Address') as $ep) {
-    // Do something with the message
-    echo "============". $ep . "================";
-    $endpoint = $ep;
-}   
+
+$endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 //echo "begin database";
 $link = mysqli_connect($endpoint,"nandini","nandinipwd","Project1db") or die("Error " . mysqli_error($link));
 
@@ -40,7 +37,7 @@ $link->real_query("SELECT * FROM Projectrec WHERE email = '$email'");
 $res = $link->use_result();
 echo "Result set order...\n";
 while ($row = $res->fetch_assoc()) {
-    echo "<img src =\" " . $row['s3rawurl'] . "\" /><img src =\"" .$row['s3finishedurl'] . "\"/>";
+    echo "<img src =\" " . $row['raws3url'] . "\" /><img src =\"" .$row['finisheds3url'] . "\"/>";
 echo $row['id'] . "Email: " . $row['email'];
 }
 $link->close();

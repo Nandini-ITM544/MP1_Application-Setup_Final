@@ -58,7 +58,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email, phone, raws3url, finisheds3url, jpegfilename, state, DateTime) VALUES (?,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email, phone, raws3url, finisheds3url, jpegfilename, state, DateTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))) {
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
 $uname = "MyName";

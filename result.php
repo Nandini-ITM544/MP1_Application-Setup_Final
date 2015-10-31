@@ -61,6 +61,7 @@ if (mysqli_connect_errno()) {
 if (!($stmt = $link->prepare("INSERT INTO Projectrec (uname, email, phone, raws3url, finisheds3url, jpegfilename, state, DateTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))) {
     echo "Prepare failed: (" . $link->errno . ") " . $link->error;
 }
+$stmt->bind_param("sss", $uname, $email, $phone, $raws3url, $finisheds3url, $jpegfilename, $state, $DateTime);
 $uname = "MyName";
 $email = $_POST['useremail'];
 $phone = $_POST['phone'];
@@ -69,8 +70,8 @@ $jpegfname = basename($fname);
 $finisheds3url = "none";
 $state = 0;
 $DateTime=date("Y-m-d H:i:s");
+$stmt->execute();
 
-$stmt->bind_param("sss", '$uname', '$email', '$phone', '$raws3url', '$finisheds3url', '$jpegfilename', $state, '$DateTime');
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;

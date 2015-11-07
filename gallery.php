@@ -1,8 +1,19 @@
 <html>
-<head><title>Gallery</title>
+<head><title> My Gallery</title>
+<link type="text/css" href="bottom.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="jquery.jcarousel.min.js"> </script>
+<script type="text/javascript" src="jquery.pikachoose.min.js"> </script>
+<script type="text/javascript" src="jquery.touchwipe.min.js"> </script>
+<script language="javascript">
+$(document).ready(function(){
+$("pikame").PikaChoose({showToolTips:true});
+});
+</script>
 </head>
 <body>
-
+<div class="pikachoose">
+<ul id ="pikame">
 <?php
 session_start();
 $email = $_POST["email"];
@@ -37,10 +48,12 @@ $link->real_query("SELECT * FROM Projectrec");
 $res = $link->use_result();
 echo "Result set order...\n";
 while ($row = $res->fetch_assoc()) {
-    echo "<img src =\" " . $row['raws3url'] . "\" />";
+    echo " <li><img src =\" " . $row['raws3url'] . "\" /></li>";
 echo $row['id'] . "Email: " . $row['email'];
 }
 $link->close();
 ?>
+</ul>
+</div>
 </body>
 </html>

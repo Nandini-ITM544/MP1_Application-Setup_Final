@@ -7,7 +7,7 @@
 <script type="text/javascript" src="jquery.touchwipe.min.js"> </script>
 <script language="javascript">
 $(document).ready(function(){
-$("pikame").PikaChoose({showToolTips:true});
+$("#pikame").PikaChoose({showToolTips:true});
 });
 </script>
 </head>

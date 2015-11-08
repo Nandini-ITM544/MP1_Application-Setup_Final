@@ -1,12 +1,12 @@
 <?php session_start(); ?>
 <html>
-<head><title>Hello app</title>
+<head><title>Form</title>
 <meta charset="utf-8">
 </head>
 <body>
 
 
-<form enctype="multipart/form-data" action="result.php" method="POST">
+<form enctype="multipart/form-data" action="submit.php" method="POST">
     
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
    

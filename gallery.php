@@ -49,7 +49,7 @@ $res = $link->use_result();
 echo "Result set order...\n";
 while ($row = $res->fetch_assoc()) {
     echo " <li><img src =\" " . $row['raws3url'] . "\" /></li>";
-echo $row['id'] . "Email: " . $row['email'];
+
 }
 $link->close();
 ?>

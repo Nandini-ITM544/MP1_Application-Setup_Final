@@ -78,7 +78,7 @@ if (!$stmt->execute()) {
 }
 printf("%d Row inserted.\n", $stmt->affected_rows);
 /* explicit close recommended */
-#header("location: gallery.php");
+header("location: gallery.php");
 $stmt->close();
 
 $link->real_query("SELECT * FROM Projectrec");
